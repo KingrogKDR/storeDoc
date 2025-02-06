@@ -15,6 +15,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
+import { createAccount } from "@/lib/actions/user.actions";
+import { useState } from "react";
+import Image from "next/image";
+import OTPModal from "./OTPModal";
 
 type FormType = "sign-in" | "sign-up";
 
@@ -33,16 +37,33 @@ const authFormSchema = (type: FormType) => {
 };
 
 const AuthForm = ({ type }: { type: FormType }) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [accountId, setAccountId] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
   const formSchema = authFormSchema(type);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       username: "",
+      email: "",
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    setIsLoading(true);
+    setErrorMessage("");
+    try {
+      const user = await createAccount({
+        username: values.username || "",
+        email: values.email,
+      });
+      setAccountId(user.accountId);
+    } catch (error) {
+      setErrorMessage("Failed to create an account. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -85,9 +106,30 @@ const AuthForm = ({ type }: { type: FormType }) => {
               );
             }}
           />
-          <Button type="submit" className="w-full">
-            Submit
+          <Button
+            type="submit"
+            className={`w-full ${isLoading ? "bg-gray-400" : "bg-black"}`}
+          >
+            {type === "sign-in" ? "Sign In" : "Sign Up"}
+
+            {isLoading && (
+              <Image
+                src="/icons/loader.svg"
+                alt="loader"
+                width={24}
+                height={24}
+                className="ml-2 animate-spin text-white"
+              />
+            )}
           </Button>
+          {errorMessage && (
+            <p className="text-sm lg:text-md text-red-700 font-lg text-center">
+              {errorMessage}
+            </p>
+          )}
+          {accountId && (
+            <OTPModal email={form.getValues("email")} accountId={accountId} />
+          )}
         </form>
       </Form>
       <div className="text-center mb-5 mt-3">
