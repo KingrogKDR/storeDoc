@@ -1,10 +1,12 @@
 "use server";
 
 import { ID, Query } from "node-appwrite";
-import { createAdminClient } from "../appwrite";
+import { createAdminClient, createSessionClient } from "../appwrite";
 import { appwriteConfig } from "../appwrite/config";
 import { parseStringify } from "../utils";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import { avatarplaceholder } from "../constants";
 
 const getUserByEmail = async (email: string) => {
   const { databases } = await createAdminClient();
@@ -33,6 +35,12 @@ export const sendEmailOtp = async ({ email }: { email: string }) => {
   }
 };
 
+async function convertArrayBufferToBase64(buffer: ArrayBuffer) {
+  const base64 = Buffer.from(buffer).toString("base64");
+  return `data:image/png;base64,${base64}`;
+}
+
+
 export const createAccount = async ({
   username,
   email,
@@ -41,12 +49,13 @@ export const createAccount = async ({
   email: string;
 }) => {
   const userExists = await getUserByEmail(email);
-
   const accountId = await sendEmailOtp({ email });
   if (!accountId) throw new Error("AccountId not detected");
-
+  
   if (!userExists) {
-    const { databases } = await createAdminClient();
+    const { databases, avatars } = await createAdminClient();
+    const avatarBuffer = await avatars.getInitials(username || "User");
+    const avatarUrl = await convertArrayBufferToBase64(avatarBuffer);
 
     await databases.createDocument(
       appwriteConfig.databaseId,
@@ -55,13 +64,13 @@ export const createAccount = async ({
       {
         username,
         email,
-        avatar:
-          "https://imgs.search.brave.com/_5Fn8b5DwfbDPuN8gutiyNQns9dDm60WPnuxfGnDWng/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS12ZWN0b3Iv/Ymx1ZS1jaXJjbGUt/d2l0aC13aGl0ZS11/c2VyXzc4MzcwLTQ3/MDcuanBnP3NlbXQ9/YWlzX2h5YnJpZA",
+        avatar: avatarUrl || avatarplaceholder,
         accountId,
       }
     );
   }
-
+  
+  
   return parseStringify({ accountId });
 };
 
@@ -88,3 +97,36 @@ export const verifyOTP = async ({
     handleError(error, "Failed to verify OTP");
   }
 };
+
+
+export const getCurrentUser = async () => {
+  try {
+    const { databases, account } = await createSessionClient();
+
+    const result = await account.get();
+
+    const user = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.usersCollectionId,
+      [Query.equal("accountId", result.$id)],
+    );
+
+    if (user.total <= 0) return null;
+    
+    return parseStringify(user.documents[0]);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const logoutUser = async () => {
+  const { account } = await createSessionClient();
+  try {
+    account.deleteSession("current");
+    (await cookies()).delete("appwrite-session");
+  } catch (error) {
+    handleError(error, "Failed to logout user");
+  } finally {
+    redirect ("/sign-in")
+  }
+}
