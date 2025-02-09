@@ -20,8 +20,6 @@ import { useState } from "react";
 import Image from "next/image";
 import OTPModal from "./OTPModal";
 
-type FormType = "sign-in" | "sign-up";
-
 const authFormSchema = (type: FormType) => {
   return z.object({
     username:
