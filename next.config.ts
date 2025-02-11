@@ -2,14 +2,18 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["cloud.appwrite.io"], 
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "**.appwrite.io",
+        hostname: "cloud.appwrite.io",
       },
     ],
   },
+  experimental: {
+    serverActions: {
+      bodySizeLimit: "100mb", 
+    },
+  }
 };
 
 export default nextConfig;

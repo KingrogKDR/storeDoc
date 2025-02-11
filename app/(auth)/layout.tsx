@@ -7,7 +7,7 @@ const AuthLayout = ({ children } : { children : React.ReactNode}) => {
         <div>
             <div id="logo" className='flex items-center justify-center'>
                 <Image 
-                    src="/icons/logo.svg" 
+                    src="/images/logo.svg" 
                     alt="logo" 
                     width={200} 
                     height={100}

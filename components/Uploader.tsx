@@ -1,17 +1,77 @@
 "use client";
 
-import { convertFileToUrl, getFileType } from "@/lib/utils";
+import { convertFileToUrl, formatFileSize, getFileType } from "@/lib/utils";
 import { Upload } from "lucide-react";
 import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import Preview from "./Preview";
 import Image from "next/image";
+import { MAX_FILE_SIZE } from "@/lib/constants";
+import { useToast } from "@/hooks/use-toast";
+import { uploadFile } from "@/lib/actions/file.actions";
+import { usePathname } from "next/navigation";
 
-const Uploader = () => {
+const Uploader = ({
+  ownerId,
+  accountId,
+}: {
+  ownerId: string;
+  accountId: string;
+}) => {
   const [files, setFiles] = useState<File[]>([]);
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    setFiles(acceptedFiles);
-  }, []);
+  const { toast } = useToast();
+  const path = usePathname();
+  const onDrop = useCallback(
+    async (acceptedFiles: File[]) => {
+      setFiles(acceptedFiles);
+
+      const uploadPromises = acceptedFiles.map(async (file) => {
+        if (file.size > MAX_FILE_SIZE) {
+          setFiles((prevFiles) =>
+            prevFiles.filter((f) => f.name !== file.name)
+          );
+          return toast({
+            description: (
+              <div className="body-2 text-white">
+                <p className="text-white text-base font-bold">
+                  File Size exceeded !
+                </p>
+                <span className="font-semibold">{file.name}</span> is too large.
+                <p>File Size: {`${formatFileSize(file.size)}MB `}</p>
+                Max File size is {`${formatFileSize(MAX_FILE_SIZE)}`}MB.
+              </div>
+            ),
+            className: "error-toast",
+          });
+        }
+
+        return uploadFile({ file, ownerId, accountId, path }).then(
+          (uploadedFile) => {
+            if (uploadedFile) {
+              setFiles((prevFiles) =>
+                prevFiles.filter((f) => f.name !== file.name)
+              );
+            }
+
+            toast({
+              description: (
+                <div className="body-1 text-white">
+                  <p className="text-white">
+                    File <span className="font-semibold">{uploadedFile.name}</span> uploaded Successfully !
+                  </p>
+                </div>
+              ),
+              className: "success-toast",
+            });
+          }
+        );
+      });
+
+      await Promise.all(uploadPromises);
+    },
+    [ownerId, accountId, path]
+  );
+
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   const handleRemoveFile = (
@@ -60,14 +120,15 @@ const Uploader = () => {
                 <div>
                   <p>{file.name}</p>
                   <Image
-                    src="/icons/file-loader.gif"
+                    src="/images/file-loader.gif"
                     alt="file-loader"
                     width={90}
                     height={50}
+                    className="unoptimized width:auto height:auto"
                   />
                 </div>
                 <Image
-                  src="/icons/close.svg"
+                  src="/icons/remove.svg"
                   alt="remove"
                   width={20}
                   height={20}

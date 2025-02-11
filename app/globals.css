@@ -1,6 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "@fontsource/dancing-script";
+
+
 
 body {
   font-family: Arial, Helvetica, sans-serif;
@@ -19,4 +22,22 @@ body {
   .form-title {
     @apply text-2xl font-bold text-center mb-6 mt-3
   }
+  .error-toast {
+    @apply bg-red-500 !rounded-[10px] max-lg:fixed max-lg:right-0 max-lg:top-0 w-fit !important;
+  }
+  .success-toast {
+    @apply bg-green-500 !rounded-[10px] max-lg:fixed max-lg:right-0 max-lg:top-0 w-fit !important;
+  }
+  .body-2 {
+    @apply text-[16px] leading-[24px] font-normal !important;
+  }
+
+  .body-1 {
+    @apply text-[16px] leading-[24px] font-normal !important;
+  }
+
+  .file-card-details {
+    @apply flex flex-col gap-2 text-gray-500 !important;
+  }
 }
+
