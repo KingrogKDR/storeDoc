@@ -19,6 +19,7 @@ import { createAccount } from "@/lib/actions/user.actions";
 import { useState } from "react";
 import Image from "next/image";
 import OTPModal from "./OTPModal";
+import { FormType } from "@/types";
 
 const authFormSchema = (type: FormType) => {
   return z.object({
@@ -106,7 +107,13 @@ const AuthForm = ({ type }: { type: FormType }) => {
           />
           <Button
             type="submit"
-            className={`w-full ${isLoading ? "bg-gray-400" : "bg-black"}`}
+            name="action"
+            value="email"
+            className={`w-full ${
+              isLoading
+                ? "bg-gray-400 hover:bg-gray-400/50 disabled"
+                : "bg-black"
+            }`}
           >
             {type === "sign-in" ? "Sign In" : "Sign Up"}
 

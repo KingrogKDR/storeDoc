@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 import Analytics from "./Analytics";
@@ -22,7 +22,7 @@ const HomeContent = ({
   email: string;
   avatar: string;
   $id: string;
-  accountId: string
+  accountId: string;
 }) => {
   return (
     <div className="w-full mt-8 lg:mt-0 overflow-clip">
@@ -42,7 +42,9 @@ const HomeContent = ({
               free
             </span>
             <span className="text-gray-500"> storage </span>
-            <span className="text-green-500 italic text-xl 2xl:text-4xl">solution</span>
+            <span className="text-green-500 italic text-xl 2xl:text-4xl">
+              solution
+            </span>
             <span className="text-gray-500"> online</span>
           </h1>
         </div>
@@ -78,13 +80,15 @@ const HomeContent = ({
         </div>
         <div className="md:w-1/2 px-4 py-2">
           <SearchBar />
-          {fileRoutes.map(({ name, url }, index) => {
-            return (
-              <Link key={`${name}-${index}`} href={url}>
-                <FileRoute name={name} />
-              </Link>
-            );
-          })}
+          <div className="mt-6">
+            {fileRoutes.map(({ name, url }, index) => {
+              return (
+                <Link key={`${name}-${index}`} href={url}>
+                  <FileRoute name={name} />
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>

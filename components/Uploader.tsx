@@ -1,6 +1,6 @@
 "use client";
 
-import { convertFileToUrl, formatFileSize, getFileType } from "@/lib/utils";
+import { convertFileSize, convertFileToUrl, getFileType } from "@/lib/utils";
 import { Upload } from "lucide-react";
 import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
@@ -37,8 +37,8 @@ const Uploader = ({
                   File Size exceeded !
                 </p>
                 <span className="font-semibold">{file.name}</span> is too large.
-                <p>File Size: {`${formatFileSize(file.size)}MB `}</p>
-                Max File size is {`${formatFileSize(MAX_FILE_SIZE)}`}MB.
+                <p>File Size: {`${convertFileSize(file.size)} `}</p>
+                Max File size is {`${convertFileSize(MAX_FILE_SIZE)}`}.
               </div>
             ),
             className: "error-toast",

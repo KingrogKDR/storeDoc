@@ -82,7 +82,7 @@ const OTPModal = ({
             Click to resend OTP
           </button>
           <AlertDialogAction
-            className={isLoading ? "bg-gray-400 disabled" : "bg-black"}
+            className={isLoading ? "bg-gray-400 hover:bg-gray-400/50 disabled" : "bg-black"}
             onClick={handleSubmit}
             type="button"
           >

@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { appwriteConfig } from "./appwrite/config";
+import { FileType } from "@/types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -13,16 +14,16 @@ export const parseStringify = (value: unknown) => {
 export const convertFileToUrl = (file: File) => URL.createObjectURL(file);
 
 export const convertFileSize = (sizeInBytes: number, digits?: number) => {
-  if (sizeInBytes < 1024) {
+  if (sizeInBytes < 1000) {
     return sizeInBytes + " Bytes"; // Less than 1 KB, show in Bytes
-  } else if (sizeInBytes < 1024 * 1024) {
-    const sizeInKB = sizeInBytes / 1024;
+  } else if (sizeInBytes < 1000 * 1000) {
+    const sizeInKB = sizeInBytes / 1000;
     return sizeInKB.toFixed(digits || 1) + " KB"; // Less than 1 MB, show in KB
-  } else if (sizeInBytes < 1024 * 1024 * 1024) {
-    const sizeInMB = sizeInBytes / (1024 * 1024);
+  } else if (sizeInBytes < 1000 * 1000 * 1000) {
+    const sizeInMB = sizeInBytes / (1000 * 1000);
     return sizeInMB.toFixed(digits || 1) + " MB"; // Less than 1 GB, show in MB
   } else {
-    const sizeInGB = sizeInBytes / (1024 * 1024 * 1024);
+    const sizeInGB = sizeInBytes / (1000 * 1000 * 1000);
     return sizeInGB.toFixed(digits || 1) + " GB"; // 1 GB or more, show in GB
   }
 };
@@ -132,10 +133,6 @@ export const getFileIcon = (
           return "/icons/file-other.svg";
       }
   }
-};
-
-export const formatFileSize = (sizeInBytes: number) => {
-  return (sizeInBytes / 1000000).toFixed(2); // Convert to MB using 1000-based units
 };
 
 export const formatDateTime = (isoString: string | null | undefined) => {

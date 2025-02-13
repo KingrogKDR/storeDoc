@@ -38,7 +38,6 @@ export const actionsArray = [
   "rename",
   "details",
   "share",
-  "download",
   "delete",
 ];
 

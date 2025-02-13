@@ -29,7 +29,7 @@ body {
     @apply bg-green-500 !rounded-[10px] max-lg:fixed max-lg:right-0 max-lg:top-0 w-fit !important;
   }
   .body-2 {
-    @apply text-[16px] leading-[24px] font-normal !important;
+    @apply text-[14px] leading-[20px] font-normal !important;
   }
 
   .body-1 {
