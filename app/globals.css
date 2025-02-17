@@ -3,24 +3,34 @@
 @tailwind utilities;
 @import "@fontsource/dancing-script";
 
-
-
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
 @layer base {
   :root {
-    --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+
+  .dark {
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
   }
 }
 
 @layer utilities {
   .center {
-    @apply flex items-center justify-center
+    @apply flex items-center justify-center;
   }
   .form-title {
-    @apply text-2xl font-bold text-center mb-6 mt-3
+    @apply text-2xl font-bold text-center mb-6 mt-3;
   }
   .error-toast {
     @apply bg-red-500 !rounded-[10px] max-lg:fixed max-lg:right-0 max-lg:top-0 w-fit !important;
@@ -39,5 +49,22 @@ body {
   .file-card-details {
     @apply flex flex-col gap-2 text-gray-500 !important;
   }
-}
 
+  .search {
+    @apply relative w-full md:max-w-[800px] shadow-md rounded-full !important;
+  }
+  .search-input-wrapper {
+    @apply flex h-[52px] flex-1 items-center gap-3 rounded-full px-4 drop-shadow-md !important;
+  }
+  .search-input {
+    @apply body-2 xl:text-xs outline-none ring-offset-transparent focus:ring-transparent focus:ring-offset-0 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 placeholder:body-1 w-full border-none p-0 shadow-none placeholder:text-gray-600 !important;
+  }
+
+  .search-result {
+    @apply absolute left-0 top-12 z-50 flex w-full flex-col gap-3 rounded-[20px] bg-white p-5 items-center overflow-x-scroll !important;
+  }
+
+  .empty-result {
+    @apply body-2 text-center text-gray-500 !important;
+  }
+}

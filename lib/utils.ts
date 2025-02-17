@@ -179,3 +179,26 @@ export const constructFileUrl = (bucketFileId: string) => {
 export const constructDownloadUrl = (bucketFileId: string) => {
   return `${appwriteConfig.endpointUrl}/storage/buckets/${appwriteConfig.bucketId}/files/${bucketFileId}/download?project=${appwriteConfig.projectId}`;
 };
+
+export const getFileTypesParams = (type: string) => {
+  switch (type) {
+    case "documents":
+      return ["document"];
+    case "images":
+      return ["image"];
+    case "videos":
+      return ["video"]
+    case "audio":
+      return ["audio"];
+    case "others":
+      return ["other"];
+    default:
+      return ["document"];
+  }
+};
+
+export const calculatePercentage = (sizeInBytes: number) => {
+  const totalSizeInBytes = 2 * 1024 * 1024 * 1024; // 2GB in bytes
+  const percentage = (sizeInBytes / totalSizeInBytes) * 100;
+  return Number(percentage.toFixed(2));
+};

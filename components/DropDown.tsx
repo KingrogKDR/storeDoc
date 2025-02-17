@@ -139,7 +139,7 @@ const DropDown = ({
         {["rename", "share", "delete"].includes(value) && (
           <DialogFooter className="flex-col gap-3">
             <Button
-              className={`capitalize ${
+              className={`capitalize rounded-lg ${
                 isLoading ? "bg-gray-400 hover:bg-gray-400/50 disabled" : ""
               }`}
               onClick={handleAction}
@@ -156,7 +156,7 @@ const DropDown = ({
               )}
             </Button>
             <Button
-              className="border-2 bg-white text-black hover:bg-white hover:border-black transition duration-300"
+              className="border-2 bg-white text-black hover:bg-white hover:border-black transition duration-300 rounded-lg"
               onClick={closeAllModals}
             >
               Cancel

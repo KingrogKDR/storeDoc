@@ -1,7 +1,6 @@
-"use client";
+"use client"
 
-import React from "react";
-import Analytics from "./Analytics";
+import React, { useEffect, useState } from "react";
 import FileRoute from "./FileRoute";
 import { fileRoutes } from "@/lib/constants";
 import Link from "next/link";
@@ -9,7 +8,8 @@ import { LogOutIcon } from "lucide-react";
 import Image from "next/image";
 import { logoutUser } from "@/lib/actions/user.actions";
 import Uploader from "./Uploader";
-import SearchBar from "./SearchBar";
+import { Analytics } from "./Analytics";
+import { getTotalSpace } from "@/lib/actions/file.actions";
 
 const HomeContent = ({
   $id: ownerId,
@@ -24,6 +24,26 @@ const HomeContent = ({
   $id: string;
   accountId: string;
 }) => {
+  const [isLoading, setIsLoading] = useState<string | null>(null);
+  const [totalSpace, setTotalSpace] = useState({});
+
+  const handleLinkClick = (name: string) => {
+    setIsLoading(name);
+  }; 
+  
+  useEffect(() => {
+    const fetchTotalSpace = async () => {
+      try {
+        const space = await getTotalSpace();
+        setTotalSpace(space);
+      } catch (error) {
+        console.error("Error fetching total space:", error);
+      }
+    };
+
+    fetchTotalSpace();
+  }, []);
+
   return (
     <div className="w-full mt-8 lg:mt-0 overflow-clip">
       <div className="lg:flex justify-between items-center pb-10 lg:pb-0 gap-x-3">
@@ -76,19 +96,32 @@ const HomeContent = ({
       </div>
       <div className="md:flex gap-3">
         <div className="md:w-1/2 px-4 mb-10 py-2">
-          <Analytics />
+          <Analytics used={totalSpace.used}/>
         </div>
         <div className="md:w-1/2 px-4 py-2">
-          <SearchBar />
-          <div className="mt-6">
-            {fileRoutes.map(({ name, url }, index) => {
-              return (
-                <Link key={`${name}-${index}`} href={url}>
+          {fileRoutes.map(({ name, url }, index) => {
+            return (
+              <Link
+                key={`${name}-${index}`}
+                href={isLoading ? "#" : url}
+                onClick={(e) =>
+                  isLoading ? e.preventDefault() : handleLinkClick(name)
+                }
+                className={`relative block ${
+                  isLoading ? "pointer-events-none opacity-50" : ""
+                }`}
+              >
+                <div className="relative">
                   <FileRoute name={name} />
-                </Link>
-              );
-            })}
-          </div>
+                  {isLoading === name && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-white/70">
+                      <div className="w-5 h-5 border-2 border-gray-500 border-t-transparent rounded-full animate-spin"></div>
+                    </div>
+                  )}
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </div>

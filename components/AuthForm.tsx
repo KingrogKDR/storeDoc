@@ -109,11 +109,12 @@ const AuthForm = ({ type }: { type: FormType }) => {
             type="submit"
             name="action"
             value="email"
-            className={`w-full ${
+            className={`w-full rounded-lg ${
               isLoading
                 ? "bg-gray-400 hover:bg-gray-400/50 disabled"
                 : "bg-black"
             }`}
+            onClick={(e) => isLoading && e.preventDefault()}
           >
             {type === "sign-in" ? "Sign In" : "Sign Up"}
 

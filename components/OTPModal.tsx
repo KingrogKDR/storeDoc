@@ -29,6 +29,7 @@ const OTPModal = ({
   const [isOpen, setIsOpen] = useState(true);
   const [otp, setOtp] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setIsLoading(true);
@@ -83,7 +84,7 @@ const OTPModal = ({
           </button>
           <AlertDialogAction
             className={isLoading ? "bg-gray-400 hover:bg-gray-400/50 disabled" : "bg-black"}
-            onClick={handleSubmit}
+            onClick={(e) => handleSubmit(e)}
             type="button"
           >
             Submit

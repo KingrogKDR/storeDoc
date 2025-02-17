@@ -6,6 +6,15 @@ export const fileRoutes = [
   { name: "Others", url: "/others" },
 ];
 
+export const navItems = [
+  { label: "Dashboard", imageUrl: "/icons/dashboard.svg", href: "/" },
+  { label: "Documents", imageUrl: "/icons/documents.svg", href: "/documents" },
+  { label: "Images", imageUrl: "/icons/images.svg", href: "/images" },
+  { label: "Videos", imageUrl: "/icons/videos.svg", href:"/videos" },
+  { label: "Audio", imageUrl: "/icons/audio.svg", href: "/audio" },
+  { label: "Others", imageUrl: "/icons/others.svg", href:"/others" },
+];
+
 export const dropdownItems = [
   {
     label: "Rename",
@@ -34,12 +43,35 @@ export const dropdownItems = [
   },
 ];
 
-export const actionsArray = [
-  "rename",
-  "details",
-  "share",
-  "delete",
+export const sortTypes = [
+  {
+    label: "Date created (newest)",
+    value: "$createdAt-desc",
+  },
+  {
+    label: "Date created (oldest)",
+    value: "$createdAt-asc",
+  },
+  {
+    label: "Name (A-Z)",
+    value: "name-asc",
+  },
+  {
+    label: "Name (Z-A)",
+    value: "name-desc",
+  },
+  {
+    label: "Size (Highest)",
+    value: "size-desc",
+  },
+  {
+    label: "Size (Lowest)",
+    value: "size-asc",
+  },
 ];
+
+
+export const actionsArray = ["rename", "details", "share", "delete"];
 
 export const avatarplaceholder = "/images/avatar-placeholder.jpg";
 
