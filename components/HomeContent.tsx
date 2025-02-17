@@ -25,7 +25,7 @@ const HomeContent = ({
   accountId: string;
 }) => {
   const [isLoading, setIsLoading] = useState<string | null>(null);
-  const [totalSpace, setTotalSpace] = useState({});
+  const [totalSpace, setTotalSpace] = useState<{ used: number }>({ used: 0 });
 
   const handleLinkClick = (name: string) => {
     setIsLoading(name);

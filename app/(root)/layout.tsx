@@ -8,6 +8,8 @@ import { navItems } from "@/lib/constants";
 import { usePathname } from "next/navigation";
 import React, { Suspense } from "react";
 
+export const dynamic = "force-dynamic"
+
 const HomeLayout = ({ children }: { children: React.ReactNode }) => {
   const path = usePathname()
   const showSearchBar = path !== "/" && path !== "/dashboard";
