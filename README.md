@@ -1,8 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# storeDoc
 
-## Getting Started
+storeDoc is a web application designed to facilitate the upload and storage of files on the web and local storage solutions.
 
-First, run the development server:
+## Features
+
+- **Access Control**: Set Access Control Lists (ACLs) to manage file permissions.
+- **MIME Type Handling**: Automatically detect and assign the correct MIME type to uploaded files.
+
+## Installation
+
+To set up the development environment:
+
+1. **Clone the repository**:
+
+    ```bash
+    git clone https://github.com/KingrogKDR/storeDoc.git
+    cd storeDoc
+    ```
+
+2. **Install dependencies**:
+
+    Using npm:
+
+    ```bash
+    npm install
+    ```
+
+    Or using yarn:
+
+    ```bash
+    yarn install
+    ```
+
+## Development
+
+To start the development server:
 
 ```bash
 npm run dev
@@ -14,23 +46,49 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deployment
 
-## Learn More
+The application is deployed on Vercel and can be accessed at [store-doc-one.vercel.app](https://store-doc-one.vercel.app).
 
-To learn more about Next.js, take a look at the following resources:
+To deploy your own instance:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Fork the repository** on GitHub.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. **Connect your forked repository to Vercel** by following the [Vercel deployment documentation](https://nextjs.org/docs/deployment).
 
-## Deploy on Vercel
+3. **Set up environment variables** on Vercel to configure your cloud storage credentials.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contributing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+We welcome contributions! To get started:
+
+1. **Fork the repository**.
+
+2. **Create a new branch** for your feature or bugfix:
+
+    ```bash
+    git checkout -b feature-name
+    ```
+
+3. **Make your changes** and commit them with descriptive messages.
+
+4. **Push your changes** to your forked repository:
+
+    ```bash
+    git push origin feature-name
+    ```
+
+5. **Open a pull request** to the main repository.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Acknowledgements
+
+- Built with [Next.js](https://nextjs.org/).
+- Deployed on [Vercel](https://vercel.com/).
