@@ -10,56 +10,15 @@ Store Images
 ![storeImages](screenshots/images.png)
 Store Audio
 ![storeAudio](screenshots/audio.png)
-Store Video
+Store Videos
+![storeVideo](screenshots/video.png)
 Store Anything
+![storeAnything](screenshots/anything.png)
 
 ## Features
 
 - **Access Control**: Set Access Control Lists (ACLs) to manage file permissions.
 - **MIME Type Handling**: Automatically detect and assign the correct MIME type to uploaded files.
-
-## Installation
-
-To set up the development environment:
-
-1. **Clone the repository**:
-
-   ```bash
-   git clone https://github.com/KingrogKDR/storeDoc.git
-   cd storeDoc
-   ```
-
-2. **Install dependencies**:
-
-   Using npm:
-
-   ```bash
-   npm install
-   ```
-
-   Or using yarn:
-
-   ```bash
-   yarn install
-   ```
-
-## Development
-
-To start the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 ## Deployment
 
@@ -72,28 +31,6 @@ To deploy your own instance:
 2. **Connect your forked repository to Vercel** by following the [Vercel deployment documentation](https://nextjs.org/docs/deployment).
 
 3. **Set up environment variables** on Vercel to configure your cloud storage credentials.
-
-## Contributing
-
-We welcome contributions! To get started:
-
-1. **Fork the repository**.
-
-2. **Create a new branch** for your feature or bugfix:
-
-   ```bash
-   git checkout -b feature-name
-   ```
-
-3. **Make your changes** and commit them with descriptive messages.
-
-4. **Push your changes** to your forked repository:
-
-   ```bash
-   git push origin feature-name
-   ```
-
-5. **Open a pull request** to the main repository.
 
 ## License
 
