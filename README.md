@@ -2,7 +2,16 @@
 
 storeDoc is a web application designed to facilitate the upload and storage of files on the web and local storage solutions.
 
-![Homepage](screenshots/Screenshot-from-2025-02-17-20-59-25.png) ![LoginPage](screenhots/Screenshot-2025-02-17-at-21-00-15-Store-Doc.png)
+![Homepage](screenshots/dashboard.png)
+![LoginPage](screenshots/signin.png)
+Store Pdfs
+![storePdfs](screenshots/pdf.png)
+Store Images
+![storeImages](screenshots/images.png)
+Store Audio
+![storeAudio](screenshots/audio.png)
+Store Video
+Store Anything
 
 ## Features
 
@@ -15,24 +24,24 @@ To set up the development environment:
 
 1. **Clone the repository**:
 
-    ```bash
-    git clone https://github.com/KingrogKDR/storeDoc.git
-    cd storeDoc
-    ```
+   ```bash
+   git clone https://github.com/KingrogKDR/storeDoc.git
+   cd storeDoc
+   ```
 
 2. **Install dependencies**:
 
-    Using npm:
+   Using npm:
 
-    ```bash
-    npm install
-    ```
+   ```bash
+   npm install
+   ```
 
-    Or using yarn:
+   Or using yarn:
 
-    ```bash
-    yarn install
-    ```
+   ```bash
+   yarn install
+   ```
 
 ## Development
 
@@ -72,17 +81,17 @@ We welcome contributions! To get started:
 
 2. **Create a new branch** for your feature or bugfix:
 
-    ```bash
-    git checkout -b feature-name
-    ```
+   ```bash
+   git checkout -b feature-name
+   ```
 
 3. **Make your changes** and commit them with descriptive messages.
 
 4. **Push your changes** to your forked repository:
 
-    ```bash
-    git push origin feature-name
-    ```
+   ```bash
+   git push origin feature-name
+   ```
 
 5. **Open a pull request** to the main repository.
 
