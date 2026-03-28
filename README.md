@@ -2,6 +2,8 @@
 
 storeDoc is a web application designed to facilitate the upload and storage of files on the web and local storage solutions.
 
+![Homepage](Screenshot from 2025-02-17 20-59-25.png) ![LoginPage]()
+
 ## Features
 
 - **Access Control**: Set Access Control Lists (ACLs) to manage file permissions.
