@@ -2,7 +2,7 @@
 
 storeDoc is a web application designed to facilitate the upload and storage of files on the web and local storage solutions.
 
-![Homepage](Screenshot from 2025-02-17 20-59-25.png) ![LoginPage]()
+![Homepage](screenshots/Screenshot-from-2025-02-17-20-59-25.png) ![LoginPage](screenhots/Screenshot-2025-02-17-at-21-00-15-Store-Doc.png)
 
 ## Features
 
