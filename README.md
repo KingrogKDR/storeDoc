@@ -1,3 +1,9 @@
+<p align="center">
+  <img src="public/images/logo.svg" width="400" />
+</p>
+
+
+
 # storeDoc
 
 storeDoc is a web application designed to facilitate the upload and storage of files on the web and local storage solutions.
