@@ -1,8 +1,6 @@
 <p align="center">
-  <img src="public/images/logo.svg" width="400" />
+  <img src="public/images/logo.svg" width="300" />
 </p>
-
-
 
 # storeDoc
 
