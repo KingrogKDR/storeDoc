@@ -1,8 +1,9 @@
 <p align="center">
-  <img src="public/images/logo.svg" width="300" />
+  <img src="public/images/logo.svg" width="400" />
 </p>
+<h1>StoreDoc</h1>
 
-# storeDoc
+<a href="https://store-doc-one.vercel.app">Live Demo</a>    (If you aren't able to sign-in, it is because my Appwrite subscription has ended.)
 
 storeDoc is a web application designed to facilitate the upload and storage of files on the web and local storage solutions.
 
